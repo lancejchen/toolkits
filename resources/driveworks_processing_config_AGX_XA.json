@@ -1,0 +1,273 @@
+{
+  "Algorithm": {
+    "USE_SFM": false,
+    "USE_HLPP": false,
+    "USE_IMU2ECAL": false,
+    "USE_GPS2ECAL": false,
+    "USE_FRAMEGRABBER": false,
+    "USE_SVALGO": false,
+    "USE_DRIVENET": true,
+    "USE_LANENET": true,
+    "USE_FREESPACENET": true,
+    "USE_DIE": true,
+    "USE_CPM": false,
+    "USE_STUB": false,
+    "USE_MAPNET": false,
+    "USE_OBJDET3D": false,
+    "COUNT_STUBS": 2,
+    "PATH_TO_NVIDIA_CALIB_FILE": "/algos/build/ini/vehicles/vehConfig_F-TZ_9900/calib_AGX_XA.json",
+    "CallbackHandler": {
+      "PRINT_DEBUG_INFO": false
+    },
+    "EventHandler": {
+      "DBC_FILE": "/algos/build/ini/CanGateways/EGO_Xsens.dbc",
+      "USE_CAN": true,
+      "USE_IMU": true,
+      "USE_GPS": true,
+      "TIMESTAMP_THRESHOLD": 10000,
+      "NUM_MULTITHREAD_SENSORMANAGER": 1,
+      "PRINT_DEBUG_INFO": false,
+      "USE_RECORDING": false,
+      "REPLAY_FREQUENCY": 30
+    },
+    "CalibrationHandler": {
+      "USE_SCIMU": true,
+      "USE_SCCFB": true,
+      "SCIMU": {
+        "CAN_MESSAGE_ID": 1537,
+        "PRINT_DEBUG_INFO": false
+      },
+      "SCCFB": {
+        "CALIBRATION_SIGNALS": "pitchyawrollheight",
+        "FEATURE_HISTORY_SIZE": 60,
+        "DEFAULT_MAX_FEATURE_COUNT": 8000,
+        "PRINT_DEBUG_INFO": false
+      }
+    },
+    "DataPreparator": {
+      "EMS": {
+        "SEND_EGOMOTION": true,
+        "CHANNEL_NAME_EGOMOTION": "EgoMotionAGX_XAPb",
+        "SEND_EGOMOTION3D": false,
+        "CHANNEL_NAME_EGOMOTION_3D": "EgoMotion3DAGX_XAPb",
+        "SEND_NVIDIA_CAN": false,
+        "CHANNEL_NAME_NVIDIA_CAN": "NvidiaCANAGX_XAPb",
+        "SEND_IMU_FRAME": false,
+        "CHANNEL_NAME_IMU": "XsensAGX_XAPb",
+        "USE_GPS": false,
+        "SLAVE_MODE": false,
+        "PRINT_DEBUG_INFO": false
+      }
+    },
+    "ModuleStateHandler": {
+      "HLPP": {
+        "CAMERA_NAME_FRONT": "camera:front:center:svc",
+        "CAMERA_NAME_REAR": "camera:rear:center:svc",
+        "CAMERA_NAME_LEFT": "camera:left:mirror:svc",
+        "CAMERA_NAME_RIGHT": "camera:right:mirror:svc",
+        "LookupTableLoadPath": "/home/nvidia/"
+      },
+      "SFM": {
+        "DETECTOR_THRESHOLD": 0.01,
+        "TRACKER_WINDOW_SIZE_LK": 10,
+        "TRACKER_ITERATIONS_LK": 10,
+        "FEATURE_HISTORY_SIZE": 32,
+        "SFM_POSE_HISTORY_LENGTH": 1000,
+        "SFM_MIN_RIG_DISTANCE": 0.05,
+        "SFM_MIN_TRIANGULATION_ENTRIES": 4,
+        "SFM_MAX_REPROJECTION_ERROR": 1.2,
+        "SFM_MIN_OBSERVATION_ANGLE": 1.0,
+        "DETECTOR_PYRAMID_COUNT": 3,
+        "DEFAULT_MAX_FEATURE_COUNT": 1500,
+        "SEND_POINTCLOUD": true,
+        "SEND_PROJECTEDPOINTS": false,
+        "SEND_VISUALODOMETRY": true,
+        "SEND_EGOMOTION": false,
+        "CHANNEL_NAME_POINTCLOUD": "PointCloudPb",
+        "CHANNEL_NAME_PROJECTEDPOINTS": "ProjectedPointsPb",
+        "CHANNEL_NAME_VISUALODOMETRY": "VisualOdoPb",
+        "CHANNEL_NAME_EGOMOTION": "EgoMotionPb",
+        "USE_MASKS": false,
+        "CAMERA_NAME_FRONT": "camera:front:center:svc",
+        "CAMERA_NAME_REAR": "camera:rear:center:svc",
+        "CAMERA_NAME_LEFT": "camera:left:mirror:svc",
+        "CAMERA_NAME_RIGHT": "camera:right:mirror:svc",
+        "USE_IMU": false,
+        "DEBUG_COMPUTE_AVERAGE_RUNTIME": false,
+        "PATH_TO_NVIDIA_CALIB_FILE": "/algos/build/ini/vehicles/vehConfig_ftz4500/calib_SFM.xml",
+        "PRINT_DEBUG_INFO": false
+      },
+      "DN": {
+        "MAX_CLUSTERS_PER_CLASS": 1500,
+        "MAX_PROPOSALS_PER_CLASS": 600,
+        "SCALING_FACTOR_WIDTH": 1.0,
+        "SCALING_FACTOR_HEIGHT": 1.0,
+        "NUM_CAMERAS": 2,
+        "CHANNEL_NAME_0": "DriveNetOutputFC120Pb",
+        "CHANNEL_NAME_1": "DriveNetOutputFC60Pb",
+        "CHANNEL_NAME_2": "DriveNetOutputRC120Pb",
+        "CHANNEL_NAME_3": "DriveNetOutputRC60Pb",
+        "SENSOR_NAME_0": "camera:front:center:120fov",
+        "SENSOR_NAME_1": "camera:front:center:60fov",
+        "SENSOR_NAME_2": "camera:rear:center:120fov",
+        "SENSOR_NAME_3": "camera:rear:center:60fov",
+        "MESH_START_POINT_X": 6.0,
+        "MESH_RESOLUTION_X": 2.5,
+        "MESH_POINTS_X": 20,
+        "MESH_START_POINT_Y": 0.0,
+        "MESH_RESOLUTION_Y": 2.5,
+        "MESH_POINTS_Y": 10,
+        "USE_SIGNS_LIGHTS": false,
+        "USE_DLA": false,
+        "FOVEAL_MODE_FLAG": false,
+        "IMAGE_OFFSET_X": 0,
+        "IMAGE_OFFSET_Y": 0,
+        "PRINT_DEBUG_INFO": false,
+        "USE_PITCH_ANGLE_CORRECTION":  false
+      },
+      "LN": {
+        "DETECTOR_THRESHOLD": 0.4,
+        "CHANNEL_NAME": "SekonixLanesPb",
+        "SENSOR_NAME": "camera:front:center:120fov",
+        "PRINT_DEBUG_INFO": false
+      },
+      "FSN": {
+        "MAX_FREESPACE_DISTANCE": 50,
+		"ROI_X": 300,
+		"ROI_Y": 0,
+		"ROI_IMAGE_WIDTH_FACTOR": 0.7,
+        "ROI_IMAGE_HEIGHT_FACTOR": 0.7,
+        "DETECTOR_THRESHOLD": 0.4,
+        "CHANNEL_NAME": "SekonixFreespacePb",
+        "SENSOR_NAME": "camera:front:center:120fov",
+        "PRINT_DEBUG_INFO": false
+      },
+      "CPM": {
+        "SAVE_OUTPUT_FILE_ONCE": true,
+        "FILE_NAME_BASIS": "/home/nvidia/TopViewProjection",
+        "CAMERA_NAME_FRONT": "camera:front:center:svc",
+        "CAMERA_NAME_REAR": "camera:rear:center:svc",
+        "CAMERA_NAME_LEFT": "camera:left:mirror:svc",
+        "CAMERA_NAME_RIGHT": "camera:right:mirror:svc",
+        "PROJECTION_TYPE": "GroundPlaneTrapezoid",
+        "PROJECTION_RESOLUTION": 0.02,
+        "OUTER_RECTANGLE_X1": 7.0,
+        "OUTER_RECTANGLE_Y1": 6.0,
+        "OUTER_RECTANGLE_X2": 7.0,
+        "OUTER_RECTANGLE_Y2": -6.0,
+        "OUTER_RECTANGLE_X3": -11.0,
+        "OUTER_RECTANGLE_Y3": -6.0,
+        "OUTER_RECTANGLE_X4": -11.0,
+        "OUTER_RECTANGLE_Y4": 6.0,
+        "USE_INNER_RECTANGLE": true,
+        "INNER_RECTANGLE_X1": 1.2,
+        "INNER_RECTANGLE_Y1": 0.95,
+        "INNER_RECTANGLE_X2": 1.2,
+        "INNER_RECTANGLE_Y2": -0.95,
+        "INNER_RECTANGLE_X3": -4.2,
+        "INNER_RECTANGLE_Y3": -0.95,
+        "INNER_RECTANGLE_X4": -4.2,
+        "INNER_RECTANGLE_Y4": 0.95,
+        "PRINT_DEBUG_INFO": false
+      },
+      "GPS2eCAL": {
+        "PRINT_DEBUG_INFO": false
+      },
+      "IMU2eCAL": {
+        "PRINT_DEBUG_INFO": false
+      },
+      "Stub0": {
+        "SLEEP_RUN": 1000,
+        "SLEEP_IMAGE": 100
+      },
+      "Stub1": {
+        "SLEEP_RUN": 100
+      },
+      "DIE": {
+          "SELECTED_SENSORS": [ 0, 1 ],
+          "SENSOR_LIST": [
+            {
+              "SensorName": "camera:front:center:120fov",
+              "OperationMode": "RGB2BGR",
+              "ResizeFactor": 1,
+              "SendFrequency": 7,
+              "ChannelName": "DebugImageExportFC120Pb"
+            },
+            {
+              "SensorName": "camera:front:center:60fov",
+              "OperationMode": "RGB2BGR",
+              "ResizeFactor": 1,
+              "SendFrequency": 7,
+              "ChannelName": "DebugImageExportFC60Pb"
+            },
+            {
+              "SensorName": "camera:rear:left:60fov",
+              "OperationMode": "YUV2GREY",
+              "ResizeFactor": 4,
+              "SendFrequency": 10,
+              "ChannelName": "DebugImageExportRL60Pb"
+            },
+            {
+              "SensorName": "camera:rear:right:60fov",
+              "OperationMode": "YUV2GREY",
+              "ResizeFactor": 4,
+              "SendFrequency": 10,
+              "ChannelName": "DebugImageExportRR60Pb"
+            },
+            {
+              "SensorName": "camera:front:center:svc",
+              "OperationMode": "YUV2GREY",
+              "ResizeFactor": 4,
+              "SendFrequency": 5,
+              "ChannelName": "DebugImageExportFCSVCPb"
+            },
+            {
+              "SensorName": "camera:rear:center:svc",
+              "OperationMode": "YUV2GREY",
+              "ResizeFactor": 4,
+              "SendFrequency": 5,
+              "ChannelName": "DebugImageExportRCSVCPb"
+            }
+          ],
+        "GreyConversionWeights": [ 0.333, 0.333, 0.333 ],
+        "PRINT_DEBUG_INFO": false
+        },
+        "MN": {
+            "CHANNEL_NAME":"LandmarkDetectionsPb",
+            "SENSOR_NAME": "camera:front:center:120fov",
+            "SELECT_LANDMARKS_TO_DETECT": "all",
+            "ROI_X": 0,
+            "ROI_Y": 0,
+            "ROI_IMAGE_WIDTH_FACTOR": 1.0,
+            "ROI_IMAGE_HEIGHT_FACTOR": 1.0,
+            "MIN_VALID_DNN_MASK_VALUE": 0.88,
+            "ENABLE_ROAD_MARKINGS_POLYGONS": "off",
+            "ENABLE_DISTANCE_CORRECTION": "off",
+            "PRINT_DEBUG_INFO": true
+        },
+       "ObjDet3D": {
+       "SENSOR_NAME": "camera:front:center:120fov",
+       "ObjDet3D_PROJECTION_MATRIX": [
+            8.1050702e+02, 0.0000000e+00, 5.2223090e+02, 0.0000000e+00,
+            0.0000000e+00, 1.0806760e+03, 4.1934604e+02, 0.0000000e+00,
+            0.0000000e+00, 0.0000000e+00, 1.0000000e+00, 0.0000000e+00],
+       "PRINT_DEBUG_INFO": false,
+       "SAVE_IMAGE": false,
+       "SAVE_IMAGE_INTERVAL": 1,
+       "SAVE_IMAGE_FILE_PATH": "/media/nvidia/EXTSSD/Bench/records/receive_data/%lu.ppm",
+       "SAVE_LOG": false,
+       "SAVE_LOG_INTERVAL": 1,
+       "SAVE_LOG_FILE_PATH": "/media/nvidia/EXTSSD/Bench/records/receive_data/%lu.log",
+       "ENABLE_PROFILLING": false,
+       "ENABLE_PROFILLING_FILE_PATH": "/media/nvidia/EXTSSD/Bench/driveworks_process/logs/basic.txt",
+       "PRINT_OUTPUT": false,
+       "ENABLE_VALIDATION": false,
+       "VALIDATION_GOLDEN_FILE_PATH": "/media/nvidia/EXTSSD/Bench/records/golden_data/%lu.log",
+       "VALIDATION_LOG_FILE_PATH": "/media/nvidia/EXTSSD/Bench/driveworks_process/logs/compareGolden.log",
+       "VALIDATION_LOG_OVERVIEW_FILE_PATH": "/media/nvidia/EXTSSD/Bench/driveworks_process/logs/compareGolden_overview.log",
+       "VALIDATION_LOG_TEST_THRESHOLD": 0.1,
+       "FROZEN_GRAPH_FILE_PATH": "/algos/bin/ss3d_frozen_graph.pb"
+      }
+    }
+  }
+}
